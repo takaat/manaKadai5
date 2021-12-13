@@ -32,10 +32,10 @@ struct ContentView: View {
             Text(message)
         })
     }
-
+// できればこの関数は、構造体の外に出したい
     private func calculation(leftNumber: Float?, rightNumber: Float?) {
         guard let leftNumber = leftNumber else {
-            message = Message.blankLeftNumber.rawValue
+            message = Message.blankLeftNumber.rawValue // 直接文言を代入して良いのではないか。
             isShowAlert = true
             return
         }
@@ -65,12 +65,6 @@ struct NumberField: View {
             .border(.secondary, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
             .keyboardType(.numberPad)
     }
-}
-
-enum Message: String {
-    case blankLeftNumber = "割られる数を入力して下さい"
-    case blankRightNumber = "割る数を入力して下さい"
-    case zeroRightNumber = "割る数には0を入力しないで下さい"
 }
 
 struct ContentView_Previews: PreviewProvider {
