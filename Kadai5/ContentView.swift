@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var leftNumber: Float?
     @State private var rightNumber: Float?
-    @State private var isShowAlert = false
     @State private var answer: Float = 0
-    @State private var message: String = ""
+    @State private var isShowAlert = false
+    @State private var alertMessage: String = ""
 
     var body: some View {
         VStack(spacing: 40.0) {
@@ -29,25 +29,25 @@ struct ContentView: View {
             Text(String(answer))
         }
         .alert("課題5", isPresented: $isShowAlert, actions: {}, message: {
-            Text(message)
+            Text(alertMessage)
         })
     }
-// できればこの関数は、構造体の外に出したい
+
     private func calculation(leftNumber: Float?, rightNumber: Float?) {
         guard let leftNumber = leftNumber else {
-            message = Message.blankLeftNumber.rawValue // 直接文言を代入して良いのではないか。
+            alertMessage = "割られる数を入力して下さい"
             isShowAlert = true
             return
         }
 
         guard let rightNumber = rightNumber else {
-            message = Message.blankRightNumber.rawValue
+            alertMessage = "割る数を入力して下さい"
             isShowAlert = true
             return
         }
 
         guard rightNumber != 0 else {
-            message = Message.zeroRightNumber.rawValue
+            alertMessage = "割る数には0を入力しないで下さい"
             isShowAlert = true
             return
         }
